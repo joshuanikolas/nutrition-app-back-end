@@ -3,9 +3,9 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-
-
 const SALT_LENGTH = 12;
+
+// controllers/users.js
 
 router.post('/signup', async (req, res) => {
   try {
@@ -39,7 +39,7 @@ router.post('/signin', async (req, res) => {
         res.status(401).json({ error: 'Invalid username or password.' });
       }
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ error: "invaild username or password" });
     }
   });
 

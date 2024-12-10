@@ -1,7 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const user = require('./user');
 
-const nutritionSchema = new mongoose.Schema(
-    {
+const nutritionSchema = new mongoose.Schema({
+    food: {
+        type: mongoose.Schema.Types.ObjectId, ref: "Food"
+    },
       protein: {
         type: String,
       },
@@ -36,6 +39,9 @@ const foodSchema = new mongoose.Schema(
       weightGoal: {
         type: Number,
         required: true,
+      },
+      user: {
+        type: mongoose.Schema.Types.ObjectId, ref: "User"
       },
       nutritions: [nutritionSchema]
   });
