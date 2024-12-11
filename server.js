@@ -14,11 +14,11 @@ mongoose.connection.on('connected', () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+app.use(cors());
 app.use(express.json());
 app.use('/users', usersRouter);
 app.use('/foods', foodsRouter);
-app.use('/jwt-test', testJWTRouter)
-app.use(cors())
+app.use('/jwt-test', testJWTRouter);
 
 app.listen(3000, () => {
   console.log('The express app is ready!');

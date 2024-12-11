@@ -40,11 +40,11 @@ const foodSchema = new mongoose.Schema(
         type: Number,
         required: true,
       },
-      user: {
+      author: {
         type: mongoose.Schema.Types.ObjectId, ref: "User"
-      },
-      nutritions: [nutritionSchema]
-  });
+      }, nutritions: [nutritionSchema]
+    },
+);
 
     const Food = mongoose.model('Food', foodSchema);
 
