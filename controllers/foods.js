@@ -17,12 +17,10 @@ router.post('/', async (req, res) => {
   });
   
 
-  router.get('/', async (req, res) => {
+  router.get('/:foodId', async (req, res) => {
     try {
-      const foods = await Food.find({})
-        .populate('user')
-        .sort({ createdAt: 'desc' });
-      res.status(200).json(foods);
+      const food = await Food.findById(req.params.foodId).populate('author');
+      res.status(200).json(food);
     } catch (error) {
       res.status(500).json(error);
     }
@@ -50,7 +48,7 @@ router.post('/', async (req, res) => {
 
   router.get('/:foodId', async (req, res) => {
     try {
-      const food = await Food.findById(req.params.foodId).populate('user');
+      const food = await Food.findById(req.params.foodId).populate(['author', 'comments.author']);
       res.status(200).json(food);
     } catch (error) {
       res.status(500).json(error);
